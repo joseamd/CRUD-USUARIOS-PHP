@@ -1,0 +1,14 @@
+CREATE TABLE persona (
+    id_persona serial PRIMARY KEY,
+    nombre text,
+    apellido text,
+    dni text,
+    fecha_nac date,
+    correo text
+);
+
+INSERT INTO persona (nombre, apellido, dni, fecha_nac, correo)
+VALUES ('Alex', 'Muñoz', '9456', '1984-06-11', 'alex@gmail.com');
+
+INSERT INTO persona (nombre, apellido, dni, fecha_nac, correo)
+VALUES ('Martha', 'Muñoz', '5678', '1987-06-04', 'martha@gmail.com');
