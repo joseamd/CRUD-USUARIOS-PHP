@@ -2,6 +2,9 @@
 
 Este proyecto es un CRUD (Crear, Leer, Actualizar, Eliminar) de usuarios desarrollado en PHP utilizando PostgreSQL como base de datos y Bootstrap para mejorar la interfaz de usuario.
 
+## Enlace al Despliegue
+El proyecto está actualmente desplegado en ((https://situational-hoists.000webhostapp.com/app/CRUD_USUARIOS_PHP/index.php)).
+
 ## Instalación
 
 **Instalar XAMPP:**
