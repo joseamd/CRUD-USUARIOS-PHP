@@ -15,7 +15,6 @@ $stmt->execute();
 
 // Obtener los datos de la persona
 $datosPersona = $stmt->fetch(PDO::FETCH_ASSOC);
-        
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +28,8 @@ $datosPersona = $stmt->fetch(PDO::FETCH_ASSOC);
     <script src="https://kit.fontawesome.com/0b238d6077.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <h1 class="text-center p-3 alert alert-secondary">CRUD EN PHP Y POSTGRESQL</h1>
+
     <form class="col-4 p-3 mx-auto my-4" method="POST">
         <h3 class="text-center alert alert-secondary">Modificar Persona</h3>
         <input type="hidden" name="id" value="<?= $_GET["id"]; ?>" />
@@ -36,7 +37,7 @@ $datosPersona = $stmt->fetch(PDO::FETCH_ASSOC);
         include_once("controlador/modificar_persona.php");
         // Rellenar los campos del formulario con los datos obtenidos de la base de datos
         if ($datosPersona) {
-            ?>
+        ?>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nombre de la persona</label>
                 <input type="text" class="form-control" name="nombre" value="<?php echo $datosPersona['nombre']; ?>">

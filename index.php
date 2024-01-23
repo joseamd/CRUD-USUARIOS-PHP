@@ -11,69 +11,65 @@
 </head>
 
 <body>
-    <h1 class="text-center p-3">CRUD EN PHP Y POSTGRESQL</h1>
+    <div class="container-fluid">
+        <h1 class="text-center p-3 alert alert-secondary">CRUD EN PHP Y POSTGRESQL</h1>
 
-    <?php
-    include_once("controlador/eliminar_persona.php");
-    ?>
+        <?php
+        include_once("controlador/eliminar_persona.php");
+        ?>
 
-    <div class="container-fluid row">
-        <form class="col-4 p-3" method="POST">
-            <h3 class="text-center alert alert-secondary">Registro de Personas</h3>
+        <div class="row">
+            <form class="col-md-4 p-3" method="POST">
+                <h3 class="text-center alert alert-secondary">Registro de Personas</h3>
 
-            <?php
-            include_once("modelo/conexion.php");
-            include_once("controlador/registro_persona.php");
-            ?>
+                <?php
+                include_once("modelo/conexion.php");
+                include_once("controlador/registro_persona.php");
+                ?>
 
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Nombre de la persona</label>
-                <input type="text" class="form-control" name="nombre">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Apellidos de la persona</label>
-                <input type="text" class="form-control" name="apellido">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">DNI de la persona</label>
-                <input type="text" class="form-control" name="dni">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Fecha de nacimiento</label>
-                <input type="date" class="form-control" name="fecha">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Correo</label>
-                <input type="text" class="form-control" name="correo">
-            </div>
-            <button type="submit" class="btn btn-primary" name="btnregistrar" value="ok">Registrar</button>
-        </form>
-        <div class="col-8 p-4">
-            <table class="table">
-                <thead class="table-info">
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">NOMBRES</th>
-                        <th scope="col">APELLIDOS</th>
-                        <th scope="col">DNI</th>
-                        <th scope="col">FECHA DE NAC</th>
-                        <th scope="col">CORREO</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        //include_once("modelo/conexion.php");
-
-                        // Crear una instancia de CConexion
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Nombre de la persona</label>
+                    <input type="text" class="form-control" name="nombre">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Apellidos de la persona</label>
+                    <input type="text" class="form-control" name="apellido">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">DNI de la persona</label>
+                    <input type="text" class="form-control" name="dni">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Fecha de nacimiento</label>
+                    <input type="date" class="form-control" name="fecha">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Correo</label>
+                    <input type="text" class="form-control" name="correo">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" name="btnregistrar" value="ok">Registrar</button>
+            </form>
+            <div class="col-md-8 p-4">
+                <table class="table table-striped table-hover">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">NOMBRES</th>
+                            <th scope="col">APELLIDOS</th>
+                            <th scope="col">DNI</th>
+                            <th scope="col">FECHA DE NAC</th>
+                            <th scope="col">CORREO</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
                         $conexionObjeto = new CConexion();
                         $conexion = $conexionObjeto->ConexionBD();
 
-                        // Realizar la consulta a la base de datos
                         $query = "SELECT * FROM persona";
                         $result = $conexion->query($query);
 
-                        // Iterar sobre los resultados y mostrar cada fila
                         while ($datos = $result->fetch(PDO::FETCH_ASSOC)) {
                             echo "<tr>";
                             echo "<th scope='row'>" . $datos['id_persona'] . "</th>";
@@ -83,29 +79,28 @@
                             echo "<td>" . $datos['fecha_nac'] . "</td>";
                             echo "<td>" . $datos['correo'] . "</td>";
                             echo "<td>
-                                    <a href='modificar_persona.php?id=" . $datos['id_persona'] . "' class='btn btn-small btn-warning'><i class='fa-solid fa-pen-to-square'></i></a>
-                                    <a onclick='return eliminar()' href='index.php?id=" . $datos['id_persona'] . "' class='btn btn-small btn-danger'><i class='fa-solid fa-trash'></i></a>
+                                    <a href='modificar_persona.php?id=" . $datos['id_persona'] . "' class='btn btn-warning' title='Editar'><i class='fa-solid fa-pen-to-square'></i></a>
+                                    <a onclick='return eliminar()' href='index.php?id=" . $datos['id_persona'] . "' class='btn btn-danger' title='Eliminar'><i class='fa-solid fa-trash'></i></a>
                                 </td>";
                             echo "</tr>";
                         }
-                    ?>
-                </tbody>
-            </table>
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous">
     </script>
     <script>
-        function eliminar(){
-            var respuesta = confirm("Estas seguro que deseas eliminar?");
-            return respuesta
+        function eliminar() {
+            var respuesta = confirm("¿Estás seguro que deseas eliminar?");
+            return respuesta;
         }
     </script>
-
 </body>
 
 </html>

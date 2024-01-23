@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include_once("modelo/conexion.php");
 
 // Verificar si se ha enviado el formulario
@@ -27,16 +29,15 @@ if (!empty($_POST['btnmodificar'])) {
 
         // Verificar el resultado de la actualización
         if ($stmt->rowCount() == 1) {
-            //echo '<div class="alert alert-success"> Persona actualizada correctamente!</div>';
-            header('location: index.php');
+            echo "<script type='text/javascript'>window.top.location='index.php';</script>"; 
             exit;
         } else {
-            echo '<div class="alert alert-danger"> Error al actualizar persona!</div>';
-        }
+            echo "<script type='text/javascript'>window.top.location='index.php';</script>"; 
+            exit;
+        }       
         
     } else {
         echo '<div class="alert alert-warning"> Algunos de los campos esta vacío!</div>';
     }
 }
-
 ?>
